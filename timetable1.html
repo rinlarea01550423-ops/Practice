@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2학기 시간표</title>
+    
+    <!-- Google Fonts 연결 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Hi+Melody&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
+    <style>
+        .font {
+            font-family: "Bagel Fat One", system-ui, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        /* 테이블 전체 배경을 검은색으로 고정 */
+        table {
+            background-color: black;
+            text-align: center;
+        }
+
+        th, td {
+            border: 1px solid white;
+            padding: 8px 12px;
+        }
+
+        /* 요일 헤더 */
+        #t {
+            background-color: black;
+        }
+
+        #t th {
+            color: white;
+        }
+
+        /* 시간 열 */
+        .dt {
+            background-color: #1a1a1a; /* 살짝 어두운 검은색 */
+            color: white;
+        }
+
+        /* 과목별 배경 및 글자색 */
+        .OOP {
+            background-color: tomato;
+            color: white;
+        }
+
+        #c {
+            background-color: rgb(185, 185, 17);
+            color: white;
+        }
+
+        #i {
+            background-color: forestgreen;
+            color: white;
+        }
+
+        #w {
+            background-color: rgb(100, 200, 166);
+            color: white;
+        }
+
+        #cul {
+            background-color: purple;
+            color: white;
+        }
+
+        #py {
+            background-color: rgb(100, 198, 1);
+            color: white;
+        }
+
+        #m {
+            background-color: rgb(0, 107, 194);
+            color: white;
+        }
+
+        #dd {
+            background-color: rgb(210, 138, 210);
+            color: white;
+        }
+
+        #career {
+            background-color: #4A90E2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="font">2025100849 신수민 2학년 2학기 시간표</h1>
+    <table>
+        <thead class="font">
+            <tr id="t">
+                <th>수업시간</th>
+                <th>일</th>
+                <th>월</th>
+                <th>화</th>
+                <th>수</th>
+                <th>목</th>
+                <th>금</th>
+                <th>토</th>
+            </tr>
+        </thead>
+        <tbody class="font">
+            <!--1교시-->
+            <tr>
+                <td class="dt">09:00~09:50</td>
+                <td rowspan="9"></td>
+                <td rowspan="2" class="OOP">객체지향프로그래밍II</td>
+                <td rowspan="3" id="w">웹프로그래밍</td>
+                <td rowspan="2" id="cul">역사와문화</td>
+                <td rowspan="3" id="py">컴퓨팅 사고 : Python 프로그래밍</td>
+                <td rowspan="9"></td>
+                <td rowspan="9"></td>
+            </tr>
+
+            <!--2교시-->
+            <tr>
+                <td class="dt">10:00~10:50</td>
+            </tr>
+
+            <!--3교시-->
+            <tr>
+                <td class="dt">11:00~11:50</td>
+                <td id="c">채플</td>
+                <td rowspan="7"></td>
+            </tr>
+
+            <!--4교시-->
+            <tr>
+                <td class="dt">12:00~12:50</td>
+                <td class="OOP">객체지향프로그래밍II</td>
+                <td rowspan="3" id="m">기계학습</td>
+                <td rowspan="2"></td>
+            </tr>
+
+            <!--5교시-->
+            <tr>
+                <td class="dt">13:00~13:50</td>
+                <td rowspan="3" id="i">인공지능확률론</td>
+            </tr>
+
+            <!--6교시-->
+            <tr>
+                <td class="dt">14:00~14:50</td>
+                <td rowspan="3" id="dd">데이터베이스 설계</td>
+            </tr>
+
+            <!--7교시-->
+            <tr>
+                <td class="dt">15:00~15:50</td>
+                <td rowspan="2"></td>
+            </tr>
+
+            <!--8교시-->
+            <tr>
+                <td class="dt">16:00~16:50</td>
+                <td rowspan="2"></td>
+            </tr>
+
+            <!--9교시-->
+            <tr>
+                <td class="dt">17:00~17:50</td>
+                <td id="career">인생설계와 진로II</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
