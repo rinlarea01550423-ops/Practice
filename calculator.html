@@ -29,23 +29,19 @@
                 $('#disp1').val(cur);
                 if (cur.split('+').length==2){
                     let arr=cur.split('+');
-                    let tot=Number(arr[0])+Number(arr[1]);
-                    $('#disp2').val(tot);
+                    $('#disp2').val(Number(arr[0])+Number(arr[1]));
                 }
                 if (cur.split('-').length==2){
                     let arr=cur.split('-');
-                    let tot=Number(arr[0])-Number(arr[1]);
-                    $('#disp2').val(tot);
+                    $('#disp2').val(Number(arr[0])-Number(arr[1]));
                 }
                 if (cur.split('*').length==2){
                     let arr=cur.split('*');
-                    let tot=Number(arr[0])*Number(arr[1]);
-                    $('#disp2').val(tot);
+                    $('#disp2').val(Number(arr[0])*Number(arr[1]));
                 }
                 if (cur.split('/').length==2){
                     let arr=cur.split('/');
-                    let tot=Number(arr[0])/Number(arr[1]);
-                    $('#disp2').val(tot);
+                    $('#disp2').val(Number(arr[0])/Number(arr[1]));
                 }
             }
             else{
