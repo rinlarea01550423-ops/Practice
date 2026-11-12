@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BloomCalc | 파스텔 공학용 계산기</title>
+<style>
+:root{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#4c4563;background:#f8f3ff}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:28px 14px;background:radial-gradient(circle at 12% 20%,#ffe2eb,transparent 40%),radial-gradient(circle at 85% 80%,#d9f4f2,transparent 42%),#f8f3ff}.app{width:min(100%,440px)}.top{text-align:center;margin-bottom:18px}.top h1{font-size:28px;margin:0;letter-spacing:-1px}.top p{font-size:13px;color:#89819b;margin:5px}.calc{border:1px solid #fff;background:rgba(255,255,255,.76);border-radius:30px;box-shadow:0 18px 55px #a69abc30;padding:23px;backdrop-filter:blur(15px)}.screen{background:#fff;border:1px solid #eee8f8;border-radius:20px;padding:18px 18px 14px;min-height:116px;text-align:right;overflow:hidden}.expression{min-height:23px;font-size:14px;color:#a59db3;overflow-wrap:anywhere}.result{width:100%;border:0;outline:none;background:transparent;color:inherit;text-align:right;font-family:inherit;font-size:32px;font-weight:700;min-height:42px;overflow-wrap:anywhere;letter-spacing:-1px}.error-message{min-height:18px;color:#b54c72;font-size:12px;text-align:right;margin-top:4px}.result:focus{box-shadow:none}.status{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#9a92a9;margin:13px 2px 12px}.keys{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}button{font:inherit;border:0;border-radius:14px;min-height:56px;font-size:15px;font-weight:650;color:#645a7d;background:#f4f0fb;cursor:pointer;transition:transform .12s,filter .12s,box-shadow .12s;box-shadow:0 3px 0 #e7e0f1}button:hover{filter:brightness(.98);transform:translateY(-1px)}button:active{transform:translateY(2px);box-shadow:none}button:focus-visible{outline:3px solid #aa96ea;outline-offset:2px}.fn{background:#eae6ff;color:#7761a7}.op{background:#ffe7ee;color:#ba678a}.clear{background:#ffdce5;color:#b54c72}.equals{background:#b6a5ec;color:#fff;box-shadow:0 3px 0 #9985d2}.number{background:#fff}.wide{grid-column:span 2}.note{font-size:12px;line-height:1.6;text-align:center;color:#948ca4;margin:17px 5px}.history{margin-top:14px;padding:15px 18px;border:1px solid #ffffffa8;background:#ffffff90;border-radius:20px}.history h2{font-size:13px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}.history h2 button{min-height:25px;font-size:11px;padding:3px 10px;background:#f0eafb;box-shadow:none}.history-list{display:grid;gap:6px;max-height:140px;overflow:auto}.history-item{width:100%;min-height:34px;display:flex;justify-content:space-between;gap:8px;text-align:left;padding:7px 10px;font-size:12px;background:#fff;box-shadow:none;overflow-wrap:anywhere}.empty{font-size:12px;color:#a39bae;margin:0}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}@media(max-width:380px){.calc{padding:15px}.keys{gap:6px}button{min-height:50px;font-size:13px}.result{font-size:27px}}
+</style>
+</head>
+<body>
+<main class="app"><header class="top"><h1>✿ BloomCalc</h1><p>작은 계산도 산뜻하게 · pastel scientific calculator</p></header>
+<section class="calc" aria-label="공학용 계산기"><div class="screen" aria-live="polite"><div class="expression" id="expression">수식을 입력해 주세요 ♡</div><input class="result" id="result" type="text" value="0" readonly aria-label="계산 수식" autocomplete="off" spellcheck="false"><div class="error-message" id="error-message" aria-live="polite"></div></div><div class="status"><span id="angle-status">각도: DEG</span><span>π · e · 괄호 · 연산 우선순위 지원</span></div>
+<div class="keys" id="keys">
+<button class="fn" data-action="angle" id="angle-btn">DEG</button><button class="fn" data-insert="sin(">sin</button><button class="fn" data-insert="cos(">cos</button><button class="fn" data-insert="tan(">tan</button><button class="clear" data-action="clear">AC</button>
+<button class="fn" data-insert="asin(">sin⁻¹</button><button class="fn" data-insert="acos(">cos⁻¹</button><button class="fn" data-insert="atan(">tan⁻¹</button><button class="fn" data-insert="ln(">ln</button><button class="fn" data-action="back">⌫</button>
+<button class="fn" data-insert="log(">log</button><button class="fn" data-insert="sqrt(">√</button><button class="fn" data-insert="^2">x²</button><button class="fn" data-insert="^">xʸ</button><button class="op" data-insert="/">÷</button>
+<button class="fn" data-insert="(">(</button><button class="number" data-insert="7">7</button><button class="number" data-insert="8">8</button><button class="number" data-insert="9">9</button><button class="op" data-insert="*">×</button>
+<button class="fn" data-insert=")">)</button><button class="number" data-insert="4">4</button><button class="number" data-insert="5">5</button><button class="number" data-insert="6">6</button><button class="op" data-insert="-">−</button>
+<button class="fn" data-insert="π">π</button><button class="number" data-insert="1">1</button><button class="number" data-insert="2">2</button><button class="number" data-insert="3">3</button><button class="op" data-insert="+">+</button>
+<button class="fn" data-insert="e">e</button><button class="fn" data-action="sign">±</button><button class="number" data-insert="0">0</button><button class="number" data-insert=".">.</button><button class="equals" data-action="equals">=</button>
+</div></section>
+<section class="history"><h2>최근 계산 <button id="clear-history">기록 지우기</button></h2><div class="history-list" id="history"><p class="empty">아직 계산 기록이 없어요.</p></div></section><p class="note">수식에서 커서를 옮기거나 드래그해서 중간 내용을 수정할 수 있어요. Enter로 계산하고 Esc로 초기화할 수 있어요.<br>삼각함수는 DEG/RAD 모드를 선택해서 계산해 주세요.</p></main>
+<script>
+(()=>{'use strict';
+let expr='',lastExpr='',angle='DEG',justSolved=false,hasError=false;const history=[];
+const expEl=document.getElementById('expression'),resultEl=document.getElementById('result'),errorEl=document.getElementById('error-message');
+const pretty=s=>s.replaceAll('sqrt','√').replaceAll('*','×').replaceAll('/','÷').replaceAll('asin','sin⁻¹').replaceAll('acos','cos⁻¹').replaceAll('atan','tan⁻¹');
+function render(caret){hasError=false;errorEl.textContent='';expEl.textContent=lastExpr?pretty(lastExpr):'수식을 입력해 주세요 ♡';resultEl.value=expr||'0';if(caret!==undefined){resultEl.focus();resultEl.setSelectionRange(caret,caret)}}
+function insert(v){if(justSolved){if(!/^[+*/^\-]$/.test(v)){expr='';resultEl.setSelectionRange(0,0)}justSolved=false;lastExpr=''}const start=resultEl.selectionStart??expr.length,end=resultEl.selectionEnd??expr.length;const a=Math.min(start,expr.length),b=Math.min(end,expr.length);expr=expr.slice(0,a)+v+expr.slice(b);render(a+v.length)}
+function clear(){expr='';lastExpr='';justSolved=false;render(0)}
+function back(){if(hasError){render(resultEl.selectionStart??expr.length);return}if(justSolved){justSolved=false;lastExpr=''}let start=Math.min(resultEl.selectionStart??expr.length,expr.length),end=Math.min(resultEl.selectionEnd??expr.length,expr.length);if(start===end&&start>0){const prefix=expr.slice(0,start),match=prefix.match(/(?:asin|acos|atan|sqrt|sin|cos|tan|log|ln)\($/);start=match?start-match[0].length:start-1}expr=expr.slice(0,start)+expr.slice(end);render(start)}
+function tokenize(s){const out=[];let i=0;while(i<s.length){if(/\s/.test(s[i])){i++;continue}const m=s.slice(i).match(/^(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+\-]?\d+)?/);if(m){out.push({type:'num',value:Number(m[0])});i+=m[0].length;continue}const f=s.slice(i).match(/^(asin|acos|atan|sqrt|sin|cos|tan|log|ln)/);if(f){out.push({type:'fn',value:f[0]});i+=f[0].length;continue}const c=s[i++];if(c==='π'||c==='e'){out.push({type:'num',value:c==='π'?Math.PI:Math.E});continue}if('+-*/^()'.includes(c)){out.push({type:c,value:c});continue}throw Error('지원하지 않는 입력이에요')}
+// 괄호와 숫자·상수 사이의 곱셈은 생략할 수 있어요 (예: 2π, 2(3+4)).
+const a=[];for(let j=0;j<out.length;j++){if(j){const p=out[j-1],q=out[j];if((p.type==='num'||p.type===')')&&(q.type==='num'||q.type==='('||q.type==='fn'))a.push({type:'*',value:'*'})}a.push(out[j])}return a}
+function evaluate(s){const t=tokenize(s);let pos=0;const peek=()=>t[pos]?.type;const take=type=>{if(peek()!==type)throw Error('수식을 확인해 주세요');return t[pos++].value};
+function primary(){if(peek()==='num')return take('num');if(peek()==='('){take('(');const x=add();take(')');return x}if(peek()==='fn'){const f=take('fn');take('(');const x=add();take(')');const toRad=v=>angle==='DEG'?v*Math.PI/180:v;const fromRad=v=>angle==='DEG'?v*180/Math.PI:v;const funcs={sin:()=>Math.sin(toRad(x)),cos:()=>Math.cos(toRad(x)),tan:()=>Math.tan(toRad(x)),asin:()=>fromRad(Math.asin(x)),acos:()=>fromRad(Math.acos(x)),atan:()=>fromRad(Math.atan(x)),sqrt:()=>Math.sqrt(x),log:()=>Math.log10(x),ln:()=>Math.log(x)};return funcs[f]()}throw Error('숫자 또는 괄호를 확인해 주세요')}
+function power(){const x=primary();return peek()==='^'?(take('^'),Math.pow(x,unary())):x}
+function unary(){if(peek()==='+'){take('+');return unary()}if(peek()==='-'){take('-');return -unary()}return power()}
+function mul(){let x=unary();while(peek()==='*'||peek()==='/'){const op=t[pos++].type,y=unary();if(op==='/'&&y===0)throw Error('0으로 나눌 수 없어요');x=op==='*'?x*y:x/y}return x}
+function add(){let x=mul();while(peek()==='+'||peek()==='-'){const op=t[pos++].type,y=mul();x=op==='+'?x+y:x-y}return x}
+const n=add();if(pos!==t.length)throw Error('수식을 확인해 주세요');if(!Number.isFinite(n))throw Error('계산할 수 없는 값이에요');return Math.abs(n)<1e-12?0:Number(n.toPrecision(12))}
+function equals(){if(!expr)return;try{const original=expr,n=evaluate(expr),answer=String(n);lastExpr=original+' =';expr=answer;justSolved=true;history.unshift({original,answer});if(history.length>8)history.pop();render();renderHistory()}catch(err){lastExpr=expr;hasError=true;resultEl.value=expr;errorEl.textContent=err.message||'계산 오류';expEl.textContent=pretty(expr)}}
+function renderHistory(){const el=document.getElementById('history');el.replaceChildren();if(!history.length){const p=document.createElement('p');p.className='empty';p.textContent='아직 계산 기록이 없어요.';el.append(p);return}for(const h of history){const b=document.createElement('button');b.className='history-item';const l=document.createElement('span'),r=document.createElement('strong');l.textContent=pretty(h.original);r.textContent=h.answer;b.append(l,r);b.addEventListener('click',()=>{expr=h.answer;lastExpr=h.original+' =';justSolved=true;render()});el.append(b)}}
+function action(a){if(a==='clear')clear();else if(a==='back')back();else if(a==='equals')equals();else if(a==='sign'){if(expr){expr='-('+expr+')';lastExpr='';justSolved=false;render()}}else if(a==='angle'){angle=angle==='DEG'?'RAD':'DEG';document.getElementById('angle-btn').textContent=angle;document.getElementById('angle-status').textContent='각도: '+angle}}
+document.getElementById('keys').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.insert!==undefined)insert(b.dataset.insert);else action(b.dataset.action)});
+document.getElementById('clear-history').addEventListener('click',()=>{history.length=0;renderHistory()});
+// 입력창은 읽기 전용으로 유지해 IME가 값을 직접 변경하지 못하게 합니다.
+// 커서 이동과 드래그 선택은 가능하고, 입력/삭제는 JavaScript가 처리합니다.
+function forwardDelete(){
+  if(hasError){render(resultEl.selectionStart??expr.length);return}
+  if(justSolved){justSolved=false;lastExpr=''}
+  let start=Math.min(resultEl.selectionStart??expr.length,expr.length);
+  let end=Math.min(resultEl.selectionEnd??expr.length,expr.length);
+  if(start===end && end<expr.length)end++;
+  expr=expr.slice(0,start)+expr.slice(end);
+  render(start);
+}
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey||e.metaKey||e.altKey)return;
+  // 방향키, Home/End, Shift+방향키는 기본 선택 동작을 허용합니다.
+  if(['ArrowLeft','ArrowRight','Home','End','Tab'].includes(e.key))return;
+  if(e.key==='Enter'||e.key==='='){e.preventDefault();equals();return}
+  if(e.key==='Escape'){e.preventDefault();clear();return}
+  if(e.key==='Backspace'){e.preventDefault();back();return}
+  if(e.key==='Delete'){e.preventDefault();forwardDelete();return}
+  if(/^[0-9.+\-*/^()]$/.test(e.key)){
+    e.preventDefault();insert(e.key);return;
+  }
+  // 한글 조합/일반 문자 키는 무시합니다.
+  if(e.target===resultEl && (e.key.length===1||e.isComposing||e.key==='Process'))e.preventDefault();
+});
+render();
+})();
+</script>
+</body>
+</html>
